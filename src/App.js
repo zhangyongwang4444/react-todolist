@@ -3,13 +3,10 @@ import React, { Component } from 'react';
 import './App.css';
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
+import UserDialog from './UserDialog'
 
 import 'normalize.css'
 import './reset.css'
-
-
-
-
 
 class App extends Component {
   constructor(props) {
@@ -44,11 +41,12 @@ class App extends Component {
         <ol className="todoList">
           {todos}
         </ol>
+        <UserDialog />
       </div>
     );
   }
-  componentDidUpdate(){
-    
+  componentDidUpdate() {
+
   }
   addTodo(event) {
     this.state.todoList.push({
@@ -61,24 +59,24 @@ class App extends Component {
       newTodo: '',
       todoList: this.state.todoList
     })
-    
+
   }
   toggle(e, todo) {
     todo.status = todo.status === 'completed' ? '' : 'completed'
     this.setState(this.state)
-    
+
   }
   changeTitle(event) {
     this.setState({
       newTodo: event.target.value,
       todoList: this.state.todoList
     })
-    
+
   }
   delete(event, todo) {
     todo.deleted = true
     this.setState(this.state)
-    
+
   }
 }
 
