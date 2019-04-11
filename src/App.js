@@ -20,9 +20,9 @@ AV.init({
 var TestObject = AV.Object.extend('TestObject');
 var testObject = new TestObject();
 testObject.save({
-  words: 'Hello World!'
+  words: 'Hello FCH!'
 }).then(function(object) {
-  alert('LeanCloud Rocks!');
+  alert('地面调温冷暖舒适系统!');
 })
 
 
