@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
-import * as localStore from './localStore'
+
 import 'normalize.css'
 import './reset.css'
 
@@ -16,7 +16,7 @@ class App extends Component {
     super(props)
     this.state = {
       newTodo: '',
-      todoList: localStore.load('todoList') || []
+      todoList: []
     }
   }
   render() {
@@ -48,7 +48,7 @@ class App extends Component {
     );
   }
   componentDidUpdate(){
-    localStore.save('todoList', this.state.todoList)
+    
   }
   addTodo(event) {
     this.state.todoList.push({
