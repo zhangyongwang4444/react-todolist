@@ -42,6 +42,15 @@ export function signOut() {
     return undefined
 }
 
+export function signIn(username, password, successFn, errorFn) {
+    AV.User.logIn(username, password).then(function (loggedInUser) {
+        let user = getUserFromAVUser(loggedInUser)
+        successFn.call(null, user)
+    }, function (error) {
+        errorFn.call(null, error)
+    });
+}
+
 function getUserFromAVUser(AVUser) {
     return {
         id: AVUser.id,
