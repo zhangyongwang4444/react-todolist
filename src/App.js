@@ -17,14 +17,6 @@ AV.init({
 });
 
 
-var TestObject = AV.Object.extend('TestObject');
-var testObject = new TestObject();
-testObject.save({
-  words: 'Hello FCH!'
-}).then(function(object) {
-  alert('地面调温冷暖舒适系统!');
-})
-
 
 
 class App extends Component {
