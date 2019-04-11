@@ -18,8 +18,6 @@ export function signUp(username, password, successFn, errorFn) {
     user.setPassword(password);
 
     user.signUp().then(function (loggedInUser) {
-        console.log('loggedInUser')
-        console.log(loggedInUser)
         let user = getUserFromAVUser(loggedInUser)
         successFn.call(null, user)
     }, function (error) {
@@ -32,8 +30,6 @@ export function signUp(username, password, successFn, errorFn) {
 
 
 function getUserFromAVUser(AVUser) {
-    console.log('AVUser')
-    console.log(AVUser)
     return {
         id: AVUser.id,
         ...AVUser.attributes
