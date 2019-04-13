@@ -5,6 +5,7 @@ import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
 import UserDialog from './UserDialog'
 import { getCurrentUser, signOut } from './leanCloud'
+import { JSONParse } from './JSONParse'
 
 import 'normalize.css'
 import './reset.css'
@@ -56,13 +57,13 @@ class App extends Component {
   }
   signOut() {
     signOut()
-    let stateCopy = JSON.parse(JSON.stringify(this.state))
+    let stateCopy = JSONParse(this.state)
     stateCopy.user = {}
     this.setState(stateCopy)
   }
 
   onSignUpOrSignIn(user) {
-    let stateCopy = JSON.parse(JSON.stringify(this.state))
+    let stateCopy = JSONParse(this.state)
     stateCopy.user = user
     this.setState(stateCopy)
   }

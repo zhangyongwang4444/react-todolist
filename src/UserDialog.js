@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './UserDialog.css'
 import { signUp, signIn } from './leanCloud'
+import { JSONParse } from './JSONParse'
 export default class UserDialog extends Component {
     constructor(props) {
         super(props)
@@ -67,7 +68,7 @@ export default class UserDialog extends Component {
     }
 
     changeFormData(key, e) {
-        let stateCopy = JSON.parse(JSON.stringify(this.state))  // 用 JSON 深拷贝
+        let stateCopy = JSONParse(this.state) // 用 JSON 深拷贝
         stateCopy.formData[key] = e.target.value
         this.setState(stateCopy)
     }
