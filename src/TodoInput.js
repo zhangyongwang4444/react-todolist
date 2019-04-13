@@ -21,3 +21,12 @@ export default function (props) {
     />
 }
 
+
+// onChange={changeTitle.bind(null, props)}
+
+// 上面的代码相当于
+// let temp = function(e){
+// changeTitle.call(null, props, e)
+// }
+
+// onChange={temp}
