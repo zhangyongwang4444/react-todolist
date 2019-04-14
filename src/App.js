@@ -4,7 +4,7 @@ import './App.css';
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
 import UserDialog from './UserDialog'
-import { getCurrentUser, signOut } from './leanCloud'
+import { getCurrentUser, signOut, TodoModel } from './leanCloud'
 import { JSONParse } from './JSONParse'
 
 import 'normalize.css'
@@ -73,23 +73,28 @@ class App extends Component {
   componentDidUpdate() {
 
   }
+
   addTodo(event) {
-    this.state.todoList.push({
-      id: idMaker(),
+    let newTodo = {
       title: event.target.value,
       status: null,
       deleted: false
+    }
+    TodoModel.create(newTodo, (id) => {
+      newTodo.id = id
+      this.state.todoList.push(newTodo)
+      this.setState({
+        newTodo: '',
+        todoList: this.state.todoList
+      })
+    }, (error) => {
+      console.log(error)
     })
-    this.setState({
-      newTodo: '',
-      todoList: this.state.todoList
-    })
-
   }
+
   toggle(e, todo) {
     todo.status = todo.status === 'completed' ? '' : 'completed'
     this.setState(this.state)
-
   }
   changeTitle(event) {
     this.setState({
@@ -106,9 +111,3 @@ class App extends Component {
 }
 
 export default App;
-
-let id = 0;
-function idMaker() {
-  id += 1
-  return id
-}
