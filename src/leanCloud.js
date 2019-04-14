@@ -30,6 +30,15 @@ export const TodoModel = {
         todo.set('title', title)
         todo.set('status', status)
         todo.set('deleted', deleted)
+
+
+        let acl = new AV.ACL()
+        acl.setPublicReadAccess(false) // 注意这里是 false
+        acl.setWriteAccess(AV.User.current(), true)
+        acl.setReadAccess(AV.User.current(), true)
+
+        todo.setACL(acl);
+
         todo.save().then(function (response) {
             successFn.call(null, response.id)
         }, function (error) {
